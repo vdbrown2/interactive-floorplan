@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_01_000000) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_01_000200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "floorplans", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "office_units", force: :cascade do |t|
     t.string "name"
@@ -23,4 +29,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_01_000000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "office_zones", force: :cascade do |t|
+    t.bigint "floorplan_id"
+    t.string "name"
+    t.string "identifier"
+    t.integer "x"
+    t.integer "y"
+    t.integer "width"
+    t.integer "height"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["floorplan_id"], name: "index_office_zones_on_floorplan_id"
+  end
+
+  add_foreign_key "office_zones", "floorplans"
 end

@@ -10,5 +10,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :office_units, only: [:index, :update]
+    resources :floorplans do
+      resources :office_zones, only: [:index, :create, :update, :destroy]
+    end
   end
+ 
 end

@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import FloorPlan from "./FloorPlan";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Interactive Office Map</h1>
-    <FloorPlan />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
